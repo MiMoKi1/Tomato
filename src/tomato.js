@@ -44,7 +44,6 @@ figlet('TOMATO', function (err, data) {
 
         // Generate step definitions based on selected language
         if (language === 'python') {
-            // Generate Python step definitions
             let pythonTemplate = fs.readFileSync('src/templates/python_step_definition.txt', 'utf-8');
 
             gherkinSteps.forEach(step => {
@@ -60,7 +59,6 @@ figlet('TOMATO', function (err, data) {
                 stepDefinition += specificStepDefinition + '\n\n';
             });
         } else if (language === 'java') {
-            // Generate Java step definitions
             stepDefinition = `
 import io.cucumber.java.en.*;
 
@@ -91,9 +89,8 @@ public class StepDefinitions {
 `;
                 }
             });
-            stepDefinition += `}\n`; // Closing the StepDefinitions class
+            stepDefinition += `}\n`;
         } else if (language === 'js') {
-            // Generate JavaScript step definitions
             stepDefinition = `const { Given, When, Then } = require('cucumber');\n\n`;
 
             gherkinSteps.forEach(step => {
@@ -114,5 +111,22 @@ public class StepDefinitions {
 
         // Write the generated Gherkin steps to a file in the output directory
         fs.writeFileSync(path.join(outputDir, 'gherkin.feature'), stepDefinition, 'utf8');
+
+        // Commit the newly created feature file
+        gitCommitFeatureFile();
     });
 });
+
+const gitCommitFeatureFile = () => {
+    exec('git add src/output/gherkin.feature && git commit -m "Auto-commit: New feature file generated"', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Git commit error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Git commit stderr: ${stderr}`);
+            return;
+        }
+        console.log("Feature file committed to version control.");
+    });
+};

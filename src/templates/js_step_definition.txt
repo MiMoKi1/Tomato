@@ -1,0 +1,13 @@
+const { Given, When, Then } = require('cucumber');
+
+Given('{step}', function () {
+    // Code for setup
+});
+
+When('action is performed', function () {
+    // Code for action
+});
+
+Then('expected result', function () {
+    // Code for verification
+});

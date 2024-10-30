@@ -1,0 +1,9 @@
+node_modules/
+*.log
+
+
+# Stage all changes
+git add .
+
+# Commit the changes with a message
+git commit -m "Initial commit of Tomato project"

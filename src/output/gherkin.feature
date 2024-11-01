@@ -1,10 +1,6 @@
+const { Given, When, Then } = require('cucumber');
 
-import io.cucumber.java.en.*;
+Given('a user performs an action: user lgos in', function () {
+    // Code for setup
+});
 
-public class StepDefinitions {
-
-    @Given("a user performs an action: user log sin")
-    public void givenStep() {
-        // Code for setup
-    }
-}

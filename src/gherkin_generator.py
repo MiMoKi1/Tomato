@@ -1,8 +1,7 @@
 import sys
 
 def convert_to_gherkin(natural_language):
-    # Basic conversion logic: replace this with your actual conversion logic
-    # This is a placeholder. You should replace it with actual parsing logic.
+    # Conversion logic based on specific phrases
     if "logs in" in natural_language:
         return "Given the user logs in to the system"
     elif "views" in natural_language:
@@ -10,7 +9,7 @@ def convert_to_gherkin(natural_language):
     elif "sees" in natural_language:
         return "Then the user sees the welcome message"
     else:
-        return "Given a user performs an action"
+        return f"Given a user performs an action: {natural_language}"  # Default case
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

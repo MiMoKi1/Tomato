@@ -1,1 +1,1 @@
-Given a user performs an action: user lgos in
+Given the user logs in to the system

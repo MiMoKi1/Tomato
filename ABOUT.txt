@@ -1,0 +1,61 @@
+Overview of Tomato Tool
+Purpose: Tomato is a command-line tool that translates natural language input into Gherkin syntax (for automated testing) and generates language-specific test code (Python, Java, JavaScript). It can then save these files to version control, making it an end-to-end automation tool for behavior-driven development (BDD) and testing workflows.
+
+Tomato User Flow: The Steps
+1. Provide Natural Language Input
+What: Users start by typing a plain-language description of a scenario (e.g., “user logs in to the system”).
+Where: They type this input directly into the Tomato CLI.
+How: The user starts Tomato, enters the prompt, selects a target language (Python, Java, JavaScript), and Tomato then converts the input to Gherkin syntax and saves the output.
+Why: This removes the need for users to write complex Gherkin by hand and lowers the barrier to automated testing, even for those with minimal coding experience.
+2. Generate Gherkin Syntax
+What: Tomato translates natural language into Gherkin syntax.
+Where: This Gherkin output is stored in src/output/gherkin.feature.
+How: Tomato processes the input, identifies relevant phrases for Gherkin formatting, and automatically structures the output.
+Why: The generated .feature file is compatible with test frameworks like Behave, Cucumber, and Cucumber.js, enabling automated test execution.
+3. Generate Step Definitions for Selected Language
+What: Based on the user’s chosen language, Tomato produces a step definition template.
+Where: These templates are created in src/templates, and the code is written to match the target language (e.g., Python, Java, JavaScript).
+How: When selecting a language, Tomato references pre-built templates (like python_step_definition.txt) and customizes it based on the input scenario.
+Why: Having the appropriate code structure in place saves significant time and ensures uniformity across testing workflows, whether in Python, Java, or JavaScript.
+4. Automated Commit to Version Control
+What: Once the .feature file and code are generated, Tomato uses Git to stage and commit these changes.
+Where: All generated outputs (feature files and language code) are automatically committed to the Git repository.
+How: This commit process is managed via Git commands within Tomato’s code or the CI/CD pipeline configuration, ensuring files are saved for future use or collaboration.
+Why: This ensures that each change, test case, and generated code file is documented, trackable, and easily reversible.
+5. Automated Test Execution via CI/CD Pipeline
+What: After Tomato commits files to the repository, GitHub Actions (or another CI/CD system) detects changes in the src/output/gherkin.feature directory and triggers tests.
+Where: The tests are executed on GitHub Actions with the provided ci.yml pipeline.
+How: The pipeline installs language-specific dependencies (like Behave, Cucumber for Java, or Cucumber.js) and executes the test files using the appropriate language.
+Why: Automated test execution provides immediate feedback on the generated Gherkin and test code, allowing for rapid validation of new scenarios and ensuring consistent behavior as features evolve.
+Explaining How to Use Tomato to New Users
+Here’s a simple guide you could share with users for onboarding them onto Tomato.
+
+Start Tomato:
+
+Open your terminal, navigate to Tomato’s directory, and type node src/tomato.js to start the tool.
+Enter a Natural Language Scenario:
+
+When prompted, type a scenario in plain language (e.g., “user logs in to the system”).
+Select Target Language:
+
+After inputting your scenario, choose your preferred target language (Python, Java, or JavaScript) for code generation.
+Review Generated Files:
+
+Tomato automatically saves the .feature file to src/output/gherkin.feature and the language-specific test code to the appropriate directory within src/templates.
+Commit Changes:
+
+Tomato handles this for you by committing generated files to the Git repository, making it easy to track changes.
+Run Tests (Automatic via CI/CD):
+
+When you push to the repository, GitHub Actions will detect changes and automatically execute the new tests across the specified environments. Test results will appear in GitHub under Actions, letting you know if they passed or failed.
+Benefits and Use Cases
+Why Use Tomato: It simplifies the translation of everyday language into BDD-style testing, saving time and making test automation accessible.
+Where Tomato Helps Most: For non-technical users, Tomato streamlines BDD. For technical users, it accelerates automated test generation and version control.
+How Tomato Enhances Workflows: By committing feature and code files automatically and running tests, it eliminates repetitive manual steps and provides real-time feedback on test coverage.
+Let me know if any part needs adjusting to suit Tomato’s functionality or if you want further customization in the tool’s workflow!
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+name: Automated Test Execution
+
+on:
+  push:
+    paths:
+      - 'src/output/*.feature'        # Detects changes in the feature files
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        language: [python, java, javascript]  # List of supported languages
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      # Python setup and test execution
+      - name: Set up Python environment
+        if: matrix.language == 'python'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        if: matrix.language == 'python'
+        run: |
+          python -m pip install behave
+
+      - name: Run Behave tests
+        if: matrix.language == 'python'
+        run: |
+          behave src/output/*.feature
+
+      # Java setup and test execution
+      - name: Set up Java environment
+        if: matrix.language == 'java'
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Install Cucumber (Java)
+        if: matrix.language == 'java'
+        run: |
+          curl -sL https://get.cucumber.io | bash
+          mvn test -Dcucumber.features=src/output/*.feature
+
+      # JavaScript setup and test execution
+      - name: Set up Node environment
+        if: matrix.language == 'javascript'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install JavaScript dependencies
+        if: matrix.language == 'javascript'
+        run: |
+          npm install --global cucumber
+
+      - name: Run JavaScript Cucumber tests
+        if: matrix.language == 'javascript'
+        run: |
+          cucumber-js src/output/*.feature

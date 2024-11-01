@@ -116,6 +116,12 @@ public class StepDefinitions {
         console.log(`Generated Gherkin syntax saved to ${outputDir}/gherkin.feature`);
         console.log(`Generated Step Definition saved to ${outputDir}/StepDefinitions.${language === 'java' ? 'java' : language === 'python' ? 'py' : 'js'}`);
 
+        // Display generated Gherkin syntax and step definitions on the screen
+        console.log("\nGenerated Gherkin syntax:\n");
+        console.log(gherkinSyntax);
+        console.log("\nGenerated Step Definition:\n");
+        console.log(stepDefinition);
+
         // Commit the newly created feature file
         gitCommitFeatureFile();
     });

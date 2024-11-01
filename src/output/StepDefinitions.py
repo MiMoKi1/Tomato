@@ -1,6 +1,6 @@
 from behave import given, when, then
 
-@given("the user logs in to the system")
+@given("a user performs an action: user lgos in")
 def given_step(context):
     pass
 

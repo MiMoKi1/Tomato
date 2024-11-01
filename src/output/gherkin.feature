@@ -1,15 +1,10 @@
-from behave import given, when, then
 
-@given('the user logs in to the system')
-def given_givenAction(context):
-    # Code for setup
+import io.cucumber.java.en.*;
 
-@when('{step}')
-def when_action(context):
-    # Code for action
+public class StepDefinitions {
 
-@then('{step}')
-def then_result(context):
-    # Code for verification
-
-
+    @Given("the user logs in to the system")
+    public void givenStep() {
+        // Code for setup
+    }
+}

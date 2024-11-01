@@ -5,8 +5,9 @@ def generate_gherkin():
     gherkin_content = "Given the user logs in to the system\n"  # Replace this with your generated content
     
     # Write to gherkin.feature with LF line endings
-    with open('src/output/gherkin.feature', 'w', newline='\n') as f:
-        f.write(gherkin_content)
+with open('src/output/gherkin.feature', 'w', newline='\n') as f:
+    f.write("Your Gherkin content here\n")  # Ensure you replace this with actual content
+
 
 @given('the user logs in to the system')
 def given_givenAction(context):

@@ -1,0 +1,110 @@
+Here are the essential Git commands you would use for version control:
+
+1. Initialize a Git Repository
+If your project isn't yet tracked by Git, you need to initialize a Git repository:
+
+bash
+Copy code
+git init
+This creates a .git directory where Git stores its version control data.
+
+2. Clone an Existing Repository
+If you're starting from a GitHub repository (or another remote), you can clone it:
+
+bash
+Copy code
+git clone https://github.com/username/repository-name.git
+This downloads the entire project and its history to your local machine.
+
+3. Checking the Status
+To check the status of your working directory and see changes:
+
+bash
+Copy code
+git status
+4. Adding Changes
+Add files to be tracked by Git and staged for commit:
+
+bash
+Copy code
+git add <filename>  # Add a specific file
+git add .           # Add all modified and new files
+5. Committing Changes
+After staging your changes, commit them with a message:
+
+bash
+Copy code
+git commit -m "Your commit message"
+This creates a new commit in the repository's history with the changes.
+
+6. Viewing Commit History
+To see the history of commits in your repository:
+
+bash
+Copy code
+git log
+7. Pushing Changes
+Push your commits to a remote repository like GitHub:
+
+bash
+Copy code
+git push origin main   # Pushes to the main branch
+8. Pulling Changes
+To fetch and merge changes from a remote repository:
+
+bash
+Copy code
+git pull origin main   # Pulls from the main branch
+9. Creating a Branch
+For working on features or fixes without affecting the main branch:
+
+bash
+Copy code
+git checkout -b <branch-name>
+10. Switching Branches
+If you want to switch to an existing branch:
+
+bash
+Copy code
+git checkout <branch-name>
+11. Merging Branches
+Once you've finished working on a branch and want to merge it back into the main branch:
+
+bash
+Copy code
+git checkout main         # Switch to the main branch
+git merge <branch-name>    # Merge the feature branch into main
+12. Creating a Tag
+Tags are used for marking specific points in your project history, often for release versions:
+
+bash
+Copy code
+git tag -a v1.0.0 -m "Version 1.0.0 release"
+This creates a tag called v1.0.0. You can use tags to mark specific commits (such as release points) in your project.
+
+13. Pushing Tags to Remote
+After creating a tag, push it to the remote repository:
+
+bash
+Copy code
+git push origin v1.0.0    # Push a specific tag
+14. Viewing Tags
+To view all tags in your repository:
+
+bash
+Copy code
+git tag
+15. Deleting a Tag
+If you need to delete a tag:
+
+bash
+Copy code
+git tag -d v1.0.0  # Delete tag locally
+git push origin --delete v1.0.0  # Delete tag remotely
+16. Reverting Changes
+If you need to undo changes:
+
+bash
+Copy code
+git revert <commit-hash>  # Reverts a commit
+git reset --hard <commit-hash>  # Resets the current branch to a specific commit (destructive)
